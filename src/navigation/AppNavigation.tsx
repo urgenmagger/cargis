@@ -24,13 +24,22 @@ export const AppNavigation: FC = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name={Screens.RequestDetails}
-          component={RequestDetails}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
           name={Screens.Requests}
           component={Requests}
+          options={{
+            title: 'Заявки на перевозки',
+            headerStyle: {
+              backgroundColor: '#fff',
+            },
+            headerTintColor: '#000',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+        <Stack.Screen
+          name={Screens.RequestDetails}
+          component={RequestDetails}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
