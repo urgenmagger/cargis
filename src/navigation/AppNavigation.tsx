@@ -3,16 +3,16 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {RequestDetails, Requests} from '../screens';
+import {OrderDetails, Orders} from '../screens';
 
-enum Screens {
-  Requests = 'Requests',
-  RequestDetails = 'RequestDetails',
+export enum Screens {
+  Orders = 'Requests',
+  OrderDetails = 'RequestDetails',
 }
 
 export type RootStackList = {
-  [Screens.Requests]: undefined;
-  [Screens.RequestDetails]: undefined;
+  [Screens.Orders]: undefined;
+  [Screens.OrderDetails]: undefined;
 };
 
 export type RootStackListProps = NativeStackNavigationProp<RootStackList>;
@@ -24,8 +24,8 @@ export const AppNavigation: FC = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name={Screens.Requests}
-          component={Requests}
+          name={Screens.Orders}
+          component={Orders}
           options={{
             title: 'Заявки на перевозки',
             headerStyle: {
@@ -38,8 +38,8 @@ export const AppNavigation: FC = () => {
           }}
         />
         <Stack.Screen
-          name={Screens.RequestDetails}
-          component={RequestDetails}
+          name={Screens.OrderDetails}
+          component={OrderDetails}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
