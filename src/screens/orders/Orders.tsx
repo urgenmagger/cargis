@@ -67,7 +67,7 @@ export const Orders: FC = () => {
   }, [size]);
 
   const renderItem = useCallback(({item, index}) => {
-    console.log('urgen item', JSON.stringify(item, null, 3));
+    console.log('urgen item', item);
     return (
       <OrderCard
         key={`${item?.id}_${index}`}
@@ -75,6 +75,7 @@ export const Orders: FC = () => {
         status={item?.status_1c}
         createDt={getFormatDate(item?.create_dt)}
         orderId={item?.id}
+        address={item?.unloading_address}
       />
     );
   }, []);
