@@ -1,50 +1,23 @@
-import React, {FC, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  LayoutAnimation,
-  TouchableOpacity,
-} from 'react-native';
+import React, {FC, useEffect} from 'react';
+import {View, LayoutAnimation} from 'react-native';
 
 interface Props {
-  buttonText: string;
+  open?: boolean;
   children: React.ReactNode;
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>> | undefined;
 }
 
-export const Collapsible: FC<Props> = ({children, buttonText}) => {
-  const [open, setOpen] = useState(false);
+export const Collapsible: FC<Props> = ({open, children}) => {
+  useEffect(() => {
+    const animationConfig = {
+      duration: 300,
+      update: {
+        type: LayoutAnimation.Types.easeInEaseOut,
+      },
+    };
 
-  const toggleDetails = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setOpen(!open);
-  };
+    LayoutAnimation.configureNext(animationConfig);
+  }, [open]);
 
-  return (
-    <>
-      {open ? <View>{children}</View> : null}
-      <TouchableOpacity style={styles.container} onPress={toggleDetails}>
-        <Text style={styles.buttonText}>
-          {open ? 'View less ' + buttonText : 'View more ' + buttonText}
-        </Text>
-      </TouchableOpacity>
-    </>
-  );
+  return <>{open ? <View>{children}</View> : null}</>;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    borderBottomWidth: 1,
-    borderColor: 'gray',
-    backgroundColor: 'gray',
-    padding: 10,
-    alignItems: 'center',
-  },
-  buttonText: {
-    fontSize: 14,
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});

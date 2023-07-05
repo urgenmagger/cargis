@@ -5,13 +5,18 @@ import {CustomIcon} from './icons/CustomIcon';
 interface Props {
   onPress(): void;
   text?: string;
+  top?: boolean;
 }
 
-const GoBackButton: FC<Props> = ({onPress, text}) => {
+const CollapsibleButton: FC<Props> = ({top, onPress, text}) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <View style={styles.iconContainer}>
-        <CustomIcon iconName="goBack" size={16} color="#0C48A1" />
+        <CustomIcon
+          iconName={top ? 'collapsableTop' : 'collapsableBottom'}
+          size={30}
+          color="#0C48A1"
+        />
       </View>
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
@@ -25,6 +30,8 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     marginRight: 10,
+    width: 40,
+    height: 40,
   },
   buttonText: {
     fontSize: 16,
@@ -32,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GoBackButton;
+export default CollapsibleButton;

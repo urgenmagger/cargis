@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import useSWR from 'swr';
 import OrderCard from '../orders/components/OrderCard';
 import Header from '../orderDetails/components/Header';
+import {Collapsible} from '../../legos/Collapsable';
 
 export const OrderDetails = ({route}) => {
   const {orderId} = route.params;
@@ -34,7 +35,7 @@ export const OrderDetails = ({route}) => {
 
   // Access the order details from the data object
   const order = data;
-  console.log('urgen der =', order?.create_dt);
+  console.log('urgen der =', order?.unloading_address);
 
   return (
     <>
@@ -45,6 +46,7 @@ export const OrderDetails = ({route}) => {
           orderNumber={data?.id}
           status={data?.status_1c}
           createDt={data?.create_dt}
+          address={data?.unloading_address}
         />
       </View>
     </>
